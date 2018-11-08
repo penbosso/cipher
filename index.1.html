@@ -56,6 +56,7 @@
             <input type="text" id="cipherinput" placeholder="Input text here!" >
             <input class="btn" type="button" value="Cipher" onclick="rot13();">
             <p id="cipheroutput"></p>
+            <input class="btn" type="button" value="Copy output" onclick="copyfunction();">
         </div>
         <!-- <div class="right">
             <input type="text" id="decipherinput" placeholder="Input text here!">
@@ -75,6 +76,24 @@
     document.getElementById("cipheroutput").innerText = str;
     }
 
+    function copyfunction(){
+        copyText = document.getElementById("cipheroutput").innerText;
+        copyToClipboard(copyText);
+    }
+
+    const copyToClipboard = str => {
+        if(str.length <1){
+            alert('No text copied');
+            return null;
+        }
+        const el = document.createElement('textarea');
+        el.value = str;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        alert(" Text copied ");
+        };
     // function derot13() {
     //     str = document.getElementById("decipherinput").value;
     //     var output   = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
